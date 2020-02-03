@@ -1,0 +1,404 @@
+{
+    "flights": [
+        {
+            "capital": "Oranjestad",
+            "country": "Aruba",
+            "starts": "11-01-2020 04:09:21",
+            "ends": "15-01-2020 04:09:23",
+            "description": "live the beauty of Aruba's Oranjestad for the cheapest price there is",
+            "price": "1288$"
+        },
+        {
+            "capital": "Bridgetown",
+            "country": "Barbados",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of Barbados's Bridgetown for the cheapest price there is",
+            "price": "321$"
+        },
+        {
+            "capital": "Papeetē",
+            "country": "French Polynesia",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 01:09:23",
+            "description": "live the beauty of French Polynesia's Papeetē for the cheapest price there is",
+            "price": "1154$"
+        },
+        {
+            "capital": "Charlotte Amalie",
+            "country": "Virgin Islands (U.S.)",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Virgin Islands (U.S.)'s Charlotte Amalie for the cheapest price there is",
+            "price": "844$"
+        },
+        {
+            "capital": "Bridgetown",
+            "country": "Barbados",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 11:09:23",
+            "description": "live the beauty of Barbados's Bridgetown for the cheapest price there is",
+            "price": "1294$"
+        },
+        {
+            "capital": "Praia",
+            "country": "Cabo Verde",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of Cabo Verde's Praia for the cheapest price there is",
+            "price": "1616$"
+        },
+        {
+            "capital": "Conakry",
+            "country": "Guinea",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 01:09:23",
+            "description": "live the beauty of Guinea's Conakry for the cheapest price there is",
+            "price": "1938$"
+        },
+        {
+            "capital": "Tbilisi",
+            "country": "Georgia",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 11:09:23",
+            "description": "live the beauty of Georgia's Tbilisi for the cheapest price there is",
+            "price": "1555$"
+        },
+        {
+            "capital": "San Salvador",
+            "country": "El Salvador",
+            "starts": "11-01-2020 05:09:23",
+            "ends": "15-01-2020 12:09:23",
+            "description": "live the beauty of El Salvador's San Salvador for the cheapest price there is",
+            "price": "986$"
+        },
+        {
+            "capital": "Baku",
+            "country": "Azerbaijan",
+            "starts": "11-01-2020 05:09:23",
+            "ends": "15-01-2020 05:09:23",
+            "description": "live the beauty of Azerbaijan's Baku for the cheapest price there is",
+            "price": "1280$"
+        },
+        {
+            "capital": "Malabo",
+            "country": "Equatorial Guinea",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 03:09:23",
+            "description": "live the beauty of Equatorial Guinea's Malabo for the cheapest price there is",
+            "price": "1918$"
+        },
+        {
+            "capital": "Santo Domingo",
+            "country": "Dominican Republic",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 07:09:23",
+            "description": "live the beauty of Dominican Republic's Santo Domingo for the cheapest price there is",
+            "price": "1925$"
+        },
+        {
+            "capital": "Avarua",
+            "country": "Cook Islands",
+            "starts": "11-01-2020 05:09:23",
+            "ends": "15-01-2020 08:09:23",
+            "description": "live the beauty of Cook Islands's Avarua for the cheapest price there is",
+            "price": "1236$"
+        },
+        {
+            "capital": "Reykjavík",
+            "country": "Iceland",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 03:09:23",
+            "description": "live the beauty of Iceland's Reykjavík for the cheapest price there is",
+            "price": "918$"
+        },
+        {
+            "capital": "Roseau",
+            "country": "Dominica",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 11:09:23",
+            "description": "live the beauty of Dominica's Roseau for the cheapest price there is",
+            "price": "339$"
+        },
+        {
+            "capital": "Hamilton",
+            "country": "Bermuda",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of Bermuda's Hamilton for the cheapest price there is",
+            "price": "1295$"
+        },
+        {
+            "capital": "Minsk",
+            "country": "Belarus",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 03:09:23",
+            "description": "live the beauty of Belarus's Minsk for the cheapest price there is",
+            "price": "1143$"
+        },
+        {
+            "capital": "Douglas",
+            "country": "Isle of Man",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 05:09:23",
+            "description": "live the beauty of Isle of Man's Douglas for the cheapest price there is",
+            "price": "267$"
+        },
+        {
+            "capital": "St. Peter Port",
+            "country": "Guernsey",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of Guernsey's St. Peter Port for the cheapest price there is",
+            "price": "303$"
+        },
+        {
+            "capital": "Kralendijk",
+            "country": "Bonaire, Sint Eustatius and Saba",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Bonaire, Sint Eustatius and Saba's Kralendijk for the cheapest price there is",
+            "price": "1758$"
+        },
+        {
+            "capital": "Banjul",
+            "country": "Gambia",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Gambia's Banjul for the cheapest price there is",
+            "price": "1688$"
+        },
+        {
+            "capital": "Bujumbura",
+            "country": "Burundi",
+            "starts": "11-01-2020 05:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Burundi's Bujumbura for the cheapest price there is",
+            "price": "1656$"
+        },
+        {
+            "capital": "Gibraltar",
+            "country": "Gibraltar",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 08:09:23",
+            "description": "live the beauty of Gibraltar's Gibraltar for the cheapest price there is",
+            "price": "980$"
+        },
+        {
+            "capital": "Baku",
+            "country": "Azerbaijan",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 03:09:23",
+            "description": "live the beauty of Azerbaijan's Baku for the cheapest price there is",
+            "price": "655$"
+        },
+        {
+            "capital": "Baghdad",
+            "country": "Iraq",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 07:09:23",
+            "description": "live the beauty of Iraq's Baghdad for the cheapest price there is",
+            "price": "562$"
+        },
+        {
+            "capital": "Reykjavík",
+            "country": "Iceland",
+            "starts": "11-01-2020 05:09:23",
+            "ends": "15-01-2020 10:09:23",
+            "description": "live the beauty of Iceland's Reykjavík for the cheapest price there is",
+            "price": "1825$"
+        },
+        {
+            "capital": "Tehran",
+            "country": "Iran (Islamic Republic of)",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of Iran (Islamic Republic of)'s Tehran for the cheapest price there is",
+            "price": "1457$"
+        },
+        {
+            "capital": "Havana",
+            "country": "Cuba",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 01:09:23",
+            "description": "live the beauty of Cuba's Havana for the cheapest price there is",
+            "price": "1142$"
+        },
+        {
+            "capital": "Bissau",
+            "country": "Guinea-Bissau",
+            "starts": "11-01-2020 05:09:23",
+            "ends": "15-01-2020 11:09:23",
+            "description": "live the beauty of Guinea-Bissau's Bissau for the cheapest price there is",
+            "price": "380$"
+        },
+        {
+            "capital": "Algiers",
+            "country": "Algeria",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of Algeria's Algiers for the cheapest price there is",
+            "price": "1455$"
+        },
+        {
+            "capital": "Avarua",
+            "country": "Cook Islands",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Cook Islands's Avarua for the cheapest price there is",
+            "price": "1182$"
+        },
+        {
+            "capital": "Canberra",
+            "country": "Australia",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 12:09:23",
+            "description": "live the beauty of Australia's Canberra for the cheapest price there is",
+            "price": "295$"
+        },
+        {
+            "capital": "Malabo",
+            "country": "Equatorial Guinea",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 10:09:23",
+            "description": "live the beauty of Equatorial Guinea's Malabo for the cheapest price there is",
+            "price": "1197$"
+        },
+        {
+            "capital": "Quito",
+            "country": "Ecuador",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 08:09:23",
+            "description": "live the beauty of Ecuador's Quito for the cheapest price there is",
+            "price": "1853$"
+        },
+        {
+            "capital": "Mariehamn",
+            "country": "Åland Islands",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 11:09:23",
+            "description": "live the beauty of Åland Islands's Mariehamn for the cheapest price there is",
+            "price": "1104$"
+        },
+        {
+            "capital": "Ottawa",
+            "country": "Canada",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 01:09:23",
+            "description": "live the beauty of Canada's Ottawa for the cheapest price there is",
+            "price": "1221$"
+        },
+        {
+            "capital": "Suva",
+            "country": "Fiji",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 08:09:23",
+            "description": "live the beauty of Fiji's Suva for the cheapest price there is",
+            "price": "1857$"
+        },
+        {
+            "capital": "Bujumbura",
+            "country": "Burundi",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of Burundi's Bujumbura for the cheapest price there is",
+            "price": "1961$"
+        },
+        {
+            "capital": "Minsk",
+            "country": "Belarus",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 03:09:23",
+            "description": "live the beauty of Belarus's Minsk for the cheapest price there is",
+            "price": "282$"
+        },
+        {
+            "capital": "Kralendijk",
+            "country": "Bonaire, Sint Eustatius and Saba",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 01:09:23",
+            "description": "live the beauty of Bonaire, Sint Eustatius and Saba's Kralendijk for the cheapest price there is",
+            "price": "1123$"
+        },
+        {
+            "capital": "Budapest",
+            "country": "Hungary",
+            "starts": "11-01-2020 05:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Hungary's Budapest for the cheapest price there is",
+            "price": "744$"
+        },
+        {
+            "capital": "Nicosia",
+            "country": "Cyprus",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 01:09:23",
+            "description": "live the beauty of Cyprus's Nicosia for the cheapest price there is",
+            "price": "215$"
+        },
+        {
+            "capital": "San Salvador",
+            "country": "El Salvador",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 12:09:23",
+            "description": "live the beauty of El Salvador's San Salvador for the cheapest price there is",
+            "price": "635$"
+        },
+        {
+            "capital": "Avarua",
+            "country": "Cook Islands",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 03:09:23",
+            "description": "live the beauty of Cook Islands's Avarua for the cheapest price there is",
+            "price": "1449$"
+        },
+        {
+            "capital": "Baku",
+            "country": "Azerbaijan",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Azerbaijan's Baku for the cheapest price there is",
+            "price": "735$"
+        },
+        {
+            "capital": "Mariehamn",
+            "country": "Åland Islands",
+            "starts": "11-01-2020 04:09:23",
+            "ends": "15-01-2020 01:09:23",
+            "description": "live the beauty of Åland Islands's Mariehamn for the cheapest price there is",
+            "price": "1527$"
+        },
+        {
+            "capital": "Bujumbura",
+            "country": "Burundi",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 03:09:23",
+            "description": "live the beauty of Burundi's Bujumbura for the cheapest price there is",
+            "price": "1486$"
+        },
+        {
+            "capital": "Berlin",
+            "country": "Germany",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 02:09:23",
+            "description": "live the beauty of Germany's Berlin for the cheapest price there is",
+            "price": "1676$"
+        },
+        {
+            "capital": "San Salvador",
+            "country": "El Salvador",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 09:09:23",
+            "description": "live the beauty of El Salvador's San Salvador for the cheapest price there is",
+            "price": "1601$"
+        },
+        {
+            "capital": "George Town",
+            "country": "Cayman Islands",
+            "starts": "11-01-2020 03:09:23",
+            "ends": "15-01-2020 12:09:23",
+            "description": "live the beauty of Cayman Islands's George Town for the cheapest price there is",
+            "price": "1519$"
+        }
+    ]
+}
