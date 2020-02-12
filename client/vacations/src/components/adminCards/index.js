@@ -7,9 +7,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import EditBtn from '../edit'
 import axios from 'axios'
+import moment from 'moment'
 const defaultProps = {
     bgcolor: 'background.paper',
     m: 1,
@@ -54,8 +54,7 @@ const useStyles = makeStyles(theme => ({
 export default function Cards(props) {
     const classes = useStyles();
     const { value } = props
-    console.log(value);
-    const { id, capital, description, price, imageURL } = value
+    const { id, capital, description, price, imageURL, start_date, end_date } = value
 
     const deleteRequest = async () => {
         try {
@@ -71,40 +70,44 @@ export default function Cards(props) {
 
     return (
 
+        <Grid item key={id} xs={12} sm={8} md={4} >
 
+            <Card className={classes.card}>
+                <CardMedia
+                    className={classes.cardMedia}
+                    image={imageURL}
+                    title={imageURL}
+                />
+                <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {capital}
+                    </Typography>
+                    <Typography>
+                        {description}
+                    </Typography>
+                    <Typography>
+                        departure date:{moment(start_date).format('DD-MM-YYYY')}
+                    </Typography>
+                    <Typography>
 
-        <Grid item key={id} xs={12} sm={6} md={4}>
-            <Box borderColor="primary.main" borderRadius="1%" {...defaultProps}>
-                <Card className={classes.card}>
-                    <CardMedia
-                        className={classes.cardMedia}
-                        image={imageURL}
-                        title={imageURL}
-                    />
-                    <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {capital}
-                        </Typography>
-                        <Typography>
-                            {description}
-
-                        </Typography>
-
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {price}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            onClick={deleteRequest}>
-                            Delete
+                        return date:{moment(end_date).format('DD-MM-YYYY')}
+                    </Typography>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        price:{price}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={deleteRequest}>
+                        Delete
 </Button>
-                        <EditBtn data={value} />
-                    </CardActions>
-                </Card>
-            </Box>
+                    <EditBtn data={value} />
+                </CardActions>
+            </Card>
+
+
 
         </Grid>
 

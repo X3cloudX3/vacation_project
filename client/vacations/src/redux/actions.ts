@@ -1,6 +1,6 @@
 import Actions from "./action.config";
 
-import { getCountriesService, getVacationService } from "./service";
+import { getCountriesService } from "./service";
 
 // export const saveUserAction = (user: any) => {
 //     return {
@@ -23,8 +23,8 @@ export const getVacationsSuccess = (vacations: Array<object>) => {
 };
 
 export const getVacationSuccess = (vacation: object) => {
-    console.log(vacation,'changeAction');
-    
+    console.log(vacation, 'changeAction');
+
     return {
         type: Actions.GET_VACATION_SUCCESS,
         payload: vacation
@@ -46,29 +46,24 @@ export const getVacationsPending = () => {
 
 // async action
 export const getVacations = () => {
-    console.log("getVacation");
-
     return async (dispachFn: Function) => {
-        console.log("dispatch");
-
         // dispachFn(getVacationsPending());
         const vacations = await getCountriesService();
-        console.log(vacations)
-
         dispachFn(getVacationsSuccess(vacations));
     };
 };
 
-export const changeVacations = (id: number) => {
-    console.log("changeVacation");
+export const favoritAction = (vacation_id: number, user_id: number, selected: boolean) => {
+      
+
 
     return async (dispachFn: Function) => {
-        console.log("dispatch");
+        console.log(vacation_id, user_id, selected)
 
         // dispachFn(getVacationsPending());
-        const vacation = await getVacationService(id);
-        console.log(vacation)
+        // const vacations = await getCountriesService();
+        // dispachFn(getVacationsSuccess(vacations));
 
-        getVacationSuccess(vacation)
     };
 };
+

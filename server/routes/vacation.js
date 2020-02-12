@@ -22,12 +22,21 @@ router.post("/deleteVacation", async (req, res) => {
 
 })
 router.post("/editVacation", async (req, res) => {
-    const { id, capital, description, price, imageURL } = req.body
+    const { id, capital, description, price, imageURL, startDate, endDate } = req.body
     console.log(req.body);
-    pool.execute(editVacations(), [capital, description, price, imageURL, id])
+    pool.execute(editVacations(), [capital, description, price, imageURL, startDate, endDate, id])
+})
 
+router.post("/addToFavorites", async (req, res) => {
+    const { id, userId } = req.body
+    console.log(req.body);
+    pool.execute(insertToDbFavVacations(), [userId, id])
+})
 
-
+router.post("/removeFromFavorites", async (req, res) => {
+    const { id, userId } = req.body
+    console.log(req.body);
+    pool.execute(deleteFromFavDbVacations(), [userId, id])
 })
 
 
@@ -42,11 +51,21 @@ function insertToDbVacations() {
 
 }
 
+
+function insertToDbFavVacations() {
+    return "INSERT INTO `vacations_data`.`fav_vacations` (`user_id`, `vacation_id`) VALUES (?,?)"
+
+}
+function deleteFromFavDbVacations() {
+    return "delete from `vacations_data`.`fav_vacations` where `user_id`=? && `vacation_id`=?  "
+
+}
+
 function deleteFromDbVacations() {
     return "delete from `vacations_data`.`vacations` where `id`=? "
 
 }
 
 function editVacations() {
-    return "UPDATE `vacations_data`.`vacations` SET `capital`=?, `description`=?, `price`=? ,`imageURL`=?  WHERE `id`=?";
+    return "UPDATE `vacations_data`.`vacations` SET `capital`=?, `description`=?, `price`=? ,`imageURL`=?,`start_date`=?,`end_date`=?  WHERE `id`=?";
 }

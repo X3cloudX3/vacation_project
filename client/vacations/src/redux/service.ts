@@ -1,12 +1,8 @@
 import axios from "axios";
 
 export const getCountriesService = async () => {
-    console.log("service");
-
     try {
         const { data } = await axios.get("http://localhost:3200/vacation/allvacations");
-        console.log(data);
-
         return data;
     } catch (ex) {
         return []
@@ -45,20 +41,24 @@ export const loginRequest = async (formData: any, props: any) => {
 };
 
 
-export const getVacationService = async (id: number) => {
-    console.log("service");
-
+export const addToFav = async (vacation_id: number, user_id: number) => {
     try {
-        const { data } = await axios.post("http://localhost:3200/vacation/singleVacation", {
-            id
-
+        await axios.post("http://localhost:3200/vacation/addToFavorites", {
+            vacation_id, user_id
         });
-        console.log(data);
-        return data.result[0]
     } catch (error) {
-        console.log('fetch errr', error.message);
-
-
+        console.log('fetch errr', error);
     }
 
-}
+};
+
+export const removeFromFav = async (vacation_id: number, user_id: number) => {
+    try {
+        await axios.post("http://localhost:3200/vacation/removeFromFavorites", {
+            vacation_id, user_id
+        });
+    } catch (error) {
+        console.log('fetch errr', error);
+    }
+
+};

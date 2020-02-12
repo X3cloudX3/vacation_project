@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import mainAxios from "../axios/mainAxios"
 import { Redirect } from "react-router-dom"
-export const withAuth = (WrappedComponent: any) => {
+export const withAuth = (WrappedComponentVacation: any, WrappedComponentAdmin: any) => {
     return function (props: any) {
         const [status, setStatus] = useState("loading");
         const [userId, setId] = useState(0);
+        const [admin, setAdmin] = useState(false);
         useEffect(() => {
             const verify = async () => {
                 const result = await mainAxios.get("/auth/verify")
-                const { status, userId } = result.data;
+                const { status, userId, admin } = result.data;
                 setStatus(status)
                 setId(userId)
+                setAdmin(admin);
+
 
             }
             verify();
@@ -19,6 +22,7 @@ export const withAuth = (WrappedComponent: any) => {
         if (!status) return <Redirect to="/login" />
         console.log(userId);
 
-        return <WrappedComponent {...props} id={userId} />
+        if (!admin) return <WrappedComponentVacation {...props} id={userId} />
+        return <WrappedComponentAdmin {...props} />
     }
 }

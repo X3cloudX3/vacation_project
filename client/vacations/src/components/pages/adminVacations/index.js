@@ -61,7 +61,6 @@ const useStyles = makeStyles(theme => ({
 
 function Vacations(props) {
     const classes = useStyles();
-    console.log(props);
 
 
     const values = Object.values(props.stateArray)

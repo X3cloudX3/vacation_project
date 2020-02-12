@@ -124,19 +124,13 @@ function Vacations(props) {
 }
 
 const mapStateToProps = (state) => {
-
     const { vacations } = state
-
-
-
     return { stateArray: vacations }
-
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getVacations: () => dispatch(getVacations()),
-
     }
 };
 

@@ -73,9 +73,9 @@ export default function Login(props) {
       localStorage.setItem('token', data.token)
       props.history.push('/vacations')
 
-    } catch (error) { 
+    } catch (error) {
       console.log('fetch errr', error.message);
-      alert(error.response.data.err)
+      alert('no such user please register')
 
     }
 

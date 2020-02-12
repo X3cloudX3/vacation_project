@@ -80,7 +80,6 @@ async function isUserExist(email, password = null) {
     const [result] = await pool.execute(query, payload)
     const [firstUser] = result;
     console.log(firstUser, 'user');
-
     return firstUser;
 }
 
