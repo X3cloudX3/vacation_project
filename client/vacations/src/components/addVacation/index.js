@@ -11,7 +11,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import useSetStateform from '../hooks/useSetState'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import axios from 'axios'
+import axios from '../axios/mainAxios'
+import { setVacations } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
+
 const useStyles = makeStyles(theme => ({
     modal: {
         display: 'flex',
@@ -27,8 +30,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function AddModal() {
-
-    const initialState = { capital: "", description: "", price: "", imageURL: "" };
+    const dispatch = useDispatch();
+    const initialState = { capital: "", description: "", price: "", imageURL: "", startDate: "", endDate: "" };
     const [formData, onChangeInput] = useSetStateform(initialState);
 
     const classes = useStyles();
@@ -44,11 +47,11 @@ export default function AddModal() {
 
     const addVacationRequest = async () => {
         try {
-            await axios.post("http://localhost:3200/vacation/addVacation", {
+            const res = await axios.post("http://localhost:3200/vacation/addVacation", {
                 ...formData
             });
-
-            setOpen(false)
+            dispatch(setVacations(res.data))
+            handleClose()
         } catch (error) {
             console.log('fetch errr', error);
         }
@@ -138,6 +141,35 @@ export default function AddModal() {
                                     autoComplete="price"
                                     onChange={onChangeInput}
                                     value={formData.price}
+                                />
+                                <TextField
+                                    id="startDate"
+                                    label="startDate"
+                                    name="startDate"
+                                    type="date"
+
+                                    defaultValue={formData.startDate}
+                                    className={classes.textField}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    name="startDate"
+                                    onChange={onChangeInput}
+                                    fullWidth
+                                />
+                                <TextField
+                                    id="endDate"
+                                    label="endDate"
+                                    name="endDate"
+                                    type="date"
+                                    defaultValue={formData.endDate}
+                                    className={classes.textField}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    name="endDate"
+                                    onChange={onChangeInput}
+                                    fullWidth
                                 />
                                 <Button
                                     type="button"

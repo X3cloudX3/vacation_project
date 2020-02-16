@@ -11,9 +11,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import useSetStateform from '../hooks/useSetState'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import axios from 'axios'
-
-
+import axios from '../axios/mainAxios'
+import { setVacations } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
+import moment from 'moment'
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function EditModal(props) {
+    const dispatch = useDispatch();
     const { data } = props
     const { id, capital, description, price, imageURL, startDate, endDate } = data
 
@@ -49,15 +51,14 @@ export default function EditModal(props) {
 
     const editRequest = async () => {
         try {
-            await axios.post("http://localhost:3200/vacation/editVacation", {
+            const res = await axios.post("http://localhost:3200/vacation/editVacation", {
                 ...formData
             });
-
-
+            dispatch(setVacations(res.data))
+            handleClose()
         } catch (error) {
             console.log('fetch errr', error);
         }
-
     };
 
     return (
@@ -150,7 +151,8 @@ export default function EditModal(props) {
                                     label="startDate"
                                     name="startDate"
                                     type="date"
-                                    defaultValue={formData.startDate}
+
+                                    defaultValue={moment(formData.startDate).format('YYYY-MM-DD')}
                                     className={classes.textField}
                                     InputLabelProps={{
                                         shrink: true,
@@ -164,7 +166,7 @@ export default function EditModal(props) {
                                     label="endDate"
                                     name="endDate"
                                     type="date"
-                                    defaultValue={formData.endDate}
+                                    defaultValue={moment(formData.endDate).format('YYYY-MM-DD')}
                                     className={classes.textField}
                                     InputLabelProps={{
                                         shrink: true,

@@ -1,71 +1,152 @@
 const express = require("express")
 const router = express.Router();
-const pool = require("../db/pool")
+const pool = require("../db/pool");
 
+const jwt = require('jsonwebtoken')
+
+
+router.use((req, res, next) => {
+    try {
+        const decoded = jwt.verify(req.headers.authorization, process.env.SECRET);
+        req.user = decoded;
+        console.log(decoded);
+
+        next();
+    } catch (err) {
+        res.status(401).json({
+            err: 'unauthorized'
+        })
+    }
+})
 
 router.get("/allvacations", async (req, res, next) => {
-    const result = await pool.execute(getVacations());
-    res.json(result[0])
+    try {
+
+        const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
+        res.json(result[0])
+    } catch (err) {
+        console.log('all vacations err', err.message);
+        res.status(500).json({ err: 'error' })
+    }
 })
 
 router.post("/addVacation", async (req, res) => {
-    const { imageURL, capital, description, price } = req.body
-    const [result] = await pool.execute(insertToDbVacations(), [capital, description, price, imageURL])
-    console.log(result);
+    try {
+        const { capital, description, price, imageURL, startDate, endDate } = req.body
+        await pool.execute(insertToDbVacations(), [capital, description, price, imageURL, startDate, endDate])
+        const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
+        res.json(result[0])
+    } catch (err) {
+        res.status(500).json({ err: 'error' })
+    }
 
 })
 
 router.post("/deleteVacation", async (req, res) => {
-    const { id } = req.body
-    console.log(id);
-    pool.execute(deleteFromDbVacations(), [id])
-
+    try {
+        const { id } = req.body
+        await pool.execute(deleteFromDbVacations(), [id])
+        const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
+        res.json(result[0])
+    } catch (err) {
+        res.status(500).json({ err: 'error' })
+    }
 })
 router.post("/editVacation", async (req, res) => {
-    const { id, capital, description, price, imageURL, startDate, endDate } = req.body
-    console.log(req.body);
-    pool.execute(editVacations(), [capital, description, price, imageURL, startDate, endDate, id])
+    try {
+        const { id, capital, description, price, imageURL, startDate, endDate } = req.body
+        await pool.execute(editVacations(), [capital, description, price, imageURL, startDate, endDate, id])
+        const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
+        res.json(result[0])
+    } catch (err) {
+        res.status(500).json({ err: 'error' })
+    }
 })
 
 router.post("/addToFavorites", async (req, res) => {
-    const { id, userId } = req.body
-    console.log(req.body);
-    pool.execute(insertToDbFavVacations(), [userId, id])
+    try {
+        const { id, userId } = req.body
+        console.log(req.body);
+        await pool.execute(insertToDbFavVacations(), [userId, id]);
+        const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
+        res.json(result[0])
+    } catch (err) {
+        res.status(500).json({ err: 'error' })
+    }
 })
 
 router.post("/removeFromFavorites", async (req, res) => {
-    const { id, userId } = req.body
-    console.log(req.body);
-    pool.execute(deleteFromFavDbVacations(), [userId, id])
+    try {
+        const { id, userId } = req.body
+        console.log(req.body);
+        await pool.execute(deleteFromFavDbVacations(), [userId, id])
+        const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
+        res.json(result[0])
+    } catch (err) {
+        res.status(500).json({ err: 'error' })
+    }
 })
 
+router.post("/likedVacationNumber", async (req, res) => {
+    try {
+        const { id } = req.body
+        console.log('liked', id);
+        const result = await pool.execute(getNumberOfSelectedOnSpecificVacation(), [id])
+        console.log(result[0]);
+
+        res.json(result[0])
+    } catch (err) {
+        res.status(500).json({ err: 'error' })
+    }
+})
 
 module.exports = router;
 
-function getVacations() {
-    return "SELECT * FROM `vacations_data`.`vacations`";
-}
+
 
 function insertToDbVacations() {
-    return "INSERT INTO `vacations_data`.`vacations` (`capital`, `description`, `price`,`imageURL`) VALUES (?,?,?,?)"
-
+    return "INSERT INTO `vacations_data`.`vacations` (`capital`, `description`, `price`,`imageURL`,`start_date`,`end_date`) VALUES (?,?,?,?,?,?)"
 }
 
 
 function insertToDbFavVacations() {
     return "INSERT INTO `vacations_data`.`fav_vacations` (`user_id`, `vacation_id`) VALUES (?,?)"
-
 }
 function deleteFromFavDbVacations() {
     return "delete from `vacations_data`.`fav_vacations` where `user_id`=? && `vacation_id`=?  "
-
 }
 
 function deleteFromDbVacations() {
     return "delete from `vacations_data`.`vacations` where `id`=? "
-
 }
 
 function editVacations() {
     return "UPDATE `vacations_data`.`vacations` SET `capital`=?, `description`=?, `price`=? ,`imageURL`=?,`start_date`=?,`end_date`=?  WHERE `id`=?";
+}
+
+function getAllSelectedVacations() {
+    return `SELECT vacations.*, fav_vacations.id as fav_id, fav_vacations.user_id as isLiked
+FROM vacations_data.vacations 
+left join vacations_data.fav_vacations 
+on vacations.id =  fav_vacations.Vacation_id and fav_vacations.user_id = ?`
+}
+
+function getAllCountedSelectedVaction() {
+    return `SELECT 
+    count(*),vacations.id
+  FROM
+      vacations_data.vacations
+          INNER JOIN
+      vacations_data.fav_vacations ON fav_vacations.Vacation_id = vacations.id
+  group by vacations.id`
+}
+
+function getNumberOfSelectedOnSpecificVacation() {
+    return `SELECT 
+    count(*) as 'liked'
+  FROM
+      vacations_data.vacations
+          INNER JOIN
+      vacations_data.fav_vacations ON fav_vacations.Vacation_id = vacations.id
+  where vacations.id=?`
 }

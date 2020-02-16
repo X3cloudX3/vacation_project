@@ -10,6 +10,7 @@ import Cards from '../../cards'
 
 import { getVacations } from "../../../redux/actions";
 import { connect } from "react-redux";
+import store from '../../../redux/store';
 
 function Copyright() {
     return (
@@ -79,24 +80,10 @@ function Vacations(props) {
                             roman's vacations
             </Typography>
                         <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                            Something short and leading about the collection below—its contents, the creator, etc.
-                            Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-                            entirely.
+                            hello and welcome to roman's vacations here you can get the hotest deals
+                            on your favoriet places just hit the like button and get the updated on
+                            all the sales there is.
             </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={2} justify="center">
-                                <Grid item>
-                                    <Button variant="contained" color="primary">
-                                        Main call to action
-                  </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button variant="outlined" color="primary">
-                                        Secondary action
-                  </Button>
-                                </Grid>
-                            </Grid>
-                        </div>
                     </Container>
                 </div>
                 <Container className={classes.cardGrid} maxWidth="md">
@@ -135,3 +122,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Vacations)
+
+
+
+
+

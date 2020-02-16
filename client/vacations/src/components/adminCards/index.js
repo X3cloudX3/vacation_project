@@ -8,14 +8,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import EditBtn from '../edit'
-import axios from 'axios'
+import axios from '../axios/mainAxios'
 import moment from 'moment'
-const defaultProps = {
-    bgcolor: 'background.paper',
-    m: 1,
-    border: 1,
-    style: { width: '18rem', height: '26rem' },
-};
+import { setVacations } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -55,12 +51,13 @@ export default function Cards(props) {
     const classes = useStyles();
     const { value } = props
     const { id, capital, description, price, imageURL, start_date, end_date } = value
-
+    const dispatch = useDispatch();
     const deleteRequest = async () => {
         try {
-            await axios.post("http://localhost:3200/vacation/deleteVacation", {
+            const res = await axios.post("http://localhost:3200/vacation/deleteVacation", {
                 id
             });
+            dispatch(setVacations(res.data))
         } catch (error) {
             console.log('fetch errr', error);
         }

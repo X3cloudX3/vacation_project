@@ -44,6 +44,14 @@ export const getVacationsPending = () => {
     };
 };
 
+
+export const setVacations = (vacations: any) => {
+    return {
+        type: Actions.SET_VACATIONS,
+        payload: vacations,
+    }
+}
+
 // async action
 export const getVacations = () => {
     return async (dispachFn: Function) => {
@@ -54,7 +62,7 @@ export const getVacations = () => {
 };
 
 export const favoritAction = (vacation_id: number, user_id: number, selected: boolean) => {
-      
+
 
 
     return async (dispachFn: Function) => {

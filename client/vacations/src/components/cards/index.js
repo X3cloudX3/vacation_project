@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,8 +8,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ToggleButton from '@material-ui/lab/ToggleButton';
-import axios from 'axios'
-import moment from 'moment'
+import axios from '../axios/mainAxios'
+import moment from 'moment';
+
+import {setVacations} from '../../redux/actions';
+import {useDispatch} from 'react-redux';
+
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -48,24 +53,41 @@ const useStyles = makeStyles(theme => ({
 
 export default function Cards(props) {
 
+    const dispatch  = useDispatch();
 
     const userId = props.userId
     const classes = useStyles();
-    const [selected, setSelected] = React.useState(false);
     const { value } = props
-    const { id, capital, description, price, imageURL, start_date, end_date } = value
+    const { id, capital, description, price, imageURL, start_date, end_date, isLiked } = value;
+    const [likes, setlikes] = useState(0);
+    const numberOfLikes  = async (id) => {
+        try {
+            const res = await axios.post("http://localhost:3200/vacation/likedVacationNumber", {
+                id
+            });
+            setlikes(res.data[0].liked);
+            
+            // dispatch(setVacations(res.data))
+        } catch (error) {
+            console.log('fetch errr', error);
+        }
+ 
+    };
 
-
-    const toggleFavBtn = async (selected, id, userId) => {
-        if (!selected) return addToFav(id, userId)
+    numberOfLikes(id)
+   
+    const toggleFavBtn = async ( id, userId) => {
+        if(!isLiked) return addToFav(id, userId)
         return removeFromFav(id, userId)
     };
 
     const addToFav = async (id, userId) => {
         try {
-            await axios.post("http://localhost:3200/vacation/addToFavorites", {
+            const res =  await axios.post("http://localhost:3200/vacation/addToFavorites", {
                 id, userId
             });
+         
+            dispatch(setVacations(res.data))
         } catch (error) {
             console.log('fetch errr', error);
         }
@@ -74,14 +96,16 @@ export default function Cards(props) {
 
     const removeFromFav = async (id, userId) => {
         try {
-            await axios.post("http://localhost:3200/vacation/removeFromFavorites", {
+            const res = await axios.post("http://localhost:3200/vacation/removeFromFavorites", {
                 id, userId
             });
+            dispatch(setVacations(res.data))
         } catch (error) {
             console.log('fetch errr', error);
         }
-
+ 
     };
+
 
     return (
 
@@ -122,15 +146,18 @@ export default function Cards(props) {
                         <CardActions style={{ float: 'right' }} >
                             <ToggleButton
                                 value="check"
-                                selected={selected}
+                                selected={!!isLiked}
                                 onChange={() => {
-                                    setSelected(!selected);
-                                    toggleFavBtn(selected, id, userId)
+
+                                    toggleFavBtn( id, userId)
                                 }}
                             >
-                                <FavoriteIcon />
+                                <FavoriteIcon color="secondary" fontSize='large' />
+                            <Typography style={{ position: 'absolute',fontWeight: "bold",color:'black' }}>{likes}</Typography>
                             </ToggleButton>
+                            
                         </CardActions>
+
                 </Card>
         </Grid>
 

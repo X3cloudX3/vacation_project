@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from "../components/axios/mainAxios";
 
 export const getCountriesService = async () => {
     try {
-        const { data } = await axios.get("http://localhost:3200/vacation/allvacations");
+        const { data } = await axios.get(`http://localhost:3200/vacation/allvacations`);
         return data;
     } catch (ex) {
         return []
