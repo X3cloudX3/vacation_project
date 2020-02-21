@@ -26,14 +26,14 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user);
+    const token = localStorage.getItem("token");
     console.log('users', user)
     function logout() {
         localStorage.removeItem("token");
         dispatch(setUser(null))
-
     }
     const handleAuth = () => {
-        const route = user ? <Button color="inherit">
+        const route = (user || token) ? <Button color="inherit">
             <Link onClick={logout} style={{ color: "white" }} to={'/login'}>{'logout'}</Link>
         </Button> : <Button color="inherit">
                 <Link style={{ color: "white" }} to={'/login'}>{'login'}</Link>
