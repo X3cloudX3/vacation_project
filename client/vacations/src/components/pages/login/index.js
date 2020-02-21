@@ -12,7 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import useSetStateform from '../../hooks/useSetState'
+import useSetStateform from '../../hooks/useSetState';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../redux/actions'
 import axios from 'axios'
 function Copyright() {
   return (
@@ -60,6 +62,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login(props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const initialState = { password: "", email: "" };
   const [formData, onChangeInput] = useSetStateform(initialState);
 
@@ -69,8 +72,9 @@ export default function Login(props) {
         ...formData
 
       });
-      console.log(data.token);
-      localStorage.setItem('token', data.token)
+      console.log(data);
+      localStorage.setItem('token', data.token);
+      dispatch(setUser(data.user));
       props.history.push('/vacations')
 
     } catch (error) {

@@ -14,7 +14,9 @@ import Container from '@material-ui/core/Container';
 import axios from '../axios/mainAxios'
 import { setVacations } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-import moment from 'moment'
+import moment from 'moment';
+import { fields } from '../../config';
+
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -92,67 +94,34 @@ export default function EditModal(props) {
                                 change vacation
         </Typography>
                             <form className={classes.form} noValidate>
-                                <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="imageURL"
-                                    label="imageURL"
-                                    name="imageURL"
-                                    autoComplete="imageURL"
-                                    autoFocus
-                                    multiline
-                                    onChange={onChangeInput}
-                                    value={formData.imageURL}
-                                />
-                                <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="capital"
-                                    label="capital"
-                                    name="capital"
-                                    autoComplete="capital"
-                                    autoFocus
-                                    onChange={onChangeInput}
-                                    value={formData.capital}
-                                />
-                                <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    multiline
-                                    name="description"
-                                    label="description"
-                                    type="description"
-                                    id="description"
-                                    autoComplete="description"
-                                    onChange={onChangeInput}
-                                    value={formData.description}
-                                />
-                                <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    name="price"
-                                    label="price"
-                                    type="price"
-                                    id="price"
-                                    autoComplete="price"
-                                    onChange={onChangeInput}
-                                    value={formData.price}
-                                />
+
+                                {Object.values(fields).map(field => {
+
+                                    const { name, multiline, required } = field;
+
+                                    return <TextField
+                                        variant="outlined"
+                                        margin="normal"
+                                        required={required}
+                                        fullWidth
+                                        id={name}
+                                        label={name}
+                                        name={name}
+                                        autoComplete={name}
+                                        autoFocus
+                                        multiline={multiline}
+                                        onChange={onChangeInput}
+                                        value={formData[name]}
+                                    />
+                                })}
+
                                 <TextField
                                     id="startDate"
                                     label="startDate"
                                     name="startDate"
                                     type="date"
 
-                                    defaultValue={moment(formData.startDate).format('YYYY-MM-DD')}
+                                    value={moment(formData.startDate).format('YYYY-MM-DD')}
                                     className={classes.textField}
                                     InputLabelProps={{
                                         shrink: true,
@@ -166,7 +135,7 @@ export default function EditModal(props) {
                                     label="endDate"
                                     name="endDate"
                                     type="date"
-                                    defaultValue={moment(formData.endDate).format('YYYY-MM-DD')}
+                                    value={moment(formData.endDate).format('YYYY-MM-DD')}
                                     className={classes.textField}
                                     InputLabelProps={{
                                         shrink: true,

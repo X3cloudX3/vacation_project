@@ -2,19 +2,12 @@ import Actions from "./action.config";
 
 import { getCountriesService } from "./service";
 
-// export const saveUserAction = (user: any) => {
-//     return {
-//         type: Actions.SAVE_USER,
-//         payload: { user }
-//     };
-// };
 
-// interface Country {
-//     name: string,
-//     flag: string,
-//     population: number
-// }
-// sync action to reducer
+export const setUser = (user: any) => ({
+    type: Actions.SET_USER,
+    payload: user
+})
+
 export const getVacationsSuccess = (vacations: Array<object>) => {
     return {
         type: Actions.GET_VACATIONS_SUCCESS,
@@ -30,13 +23,6 @@ export const getVacationSuccess = (vacation: object) => {
         payload: vacation
     };
 };
-
-// export const saveImageAction = (payload: any) => {
-//     return {
-//         type: Actions.SAVE_IMAGES_ACTION,
-//         payload
-//     };
-// };
 
 export const getVacationsPending = () => {
     return {
@@ -61,17 +47,4 @@ export const getVacations = () => {
     };
 };
 
-export const favoritAction = (vacation_id: number, user_id: number, selected: boolean) => {
-
-
-
-    return async (dispachFn: Function) => {
-        console.log(vacation_id, user_id, selected)
-
-        // dispachFn(getVacationsPending());
-        // const vacations = await getCountriesService();
-        // dispachFn(getVacationsSuccess(vacations));
-
-    };
-};
 

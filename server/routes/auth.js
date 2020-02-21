@@ -14,9 +14,11 @@ router.post("/login", async (req, res, next) => {
     try {
         const { email, password } = req.body
         const user = await isUserExist(email, password);
-        if (!user) return res.status(401).send("ERROR LOGIN")
-        const jwtToken = await getJwt({ ...user, password: null })
-        return res.json({ token: jwtToken, redirect: true })
+        if (!user) return res.status(401).send("ERROR LOGIN");
+
+        const currentUser = { ...user, password: null };
+        const jwtToken = await getJwt(currentUser)
+        return res.json({ token: jwtToken, user: currentUser, redirect: true })
     } catch (ex) {
         if (!user) return res.status(401).send("ERROR LOGIN")
     }
@@ -44,8 +46,6 @@ router.get("/verify", async (req, res, next) => {
 
             jwt.verify(authorization, process.env.SECRET, (err, decoded) => {
                 if (err) return res.json({ status: false })
-                console.log(decoded.id);
-
                 if (decoded.user_type === "admin") { return res.json({ status: true, admin: true, userId: decoded.id }) } else {
                     return res.json({ status: true, admin: false, userId: decoded.id })
                 }
@@ -79,7 +79,6 @@ async function isUserExist(email, password = null) {
     const query = password ? getUserPasswordExistQuery() : getUserExistQuery()
     const [result] = await pool.execute(query, payload)
     const [firstUser] = result;
-    console.log(firstUser, 'user');
     return firstUser;
 }
 

@@ -52,9 +52,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Cards(props) {
-
     const dispatch  = useDispatch();
-
     const userId = props.userId
     const classes = useStyles();
     const { value } = props
@@ -66,8 +64,6 @@ export default function Cards(props) {
                 id
             });
             setlikes(res.data[0].liked);
-            
-            // dispatch(setVacations(res.data))
         } catch (error) {
             console.log('fetch errr', error);
         }

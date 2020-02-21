@@ -10,7 +10,7 @@ import Cards from '../../adminCards'
 import AddVacation from '../../addVacation'
 import { getVacations } from "../../../redux/actions";
 import { connect } from "react-redux";
-
+import Reports from '../../chart'
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -91,9 +91,7 @@ function Vacations(props) {
                                     <AddVacation />
                                 </Grid>
                                 <Grid item>
-                                    <Button variant="outlined" color="primary">
-                                        reports
-                  </Button>
+                                    <Reports></Reports>
                                 </Grid>
                             </Grid>
                         </div>

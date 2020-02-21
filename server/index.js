@@ -25,6 +25,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.use("/auth", users)
+
 app.use("/vacation", vacations) //2 entries loaded.. 
 
 

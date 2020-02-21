@@ -59,9 +59,6 @@ const useStyles = makeStyles(theme => ({
 
 function Vacations(props) {
     const classes = useStyles();
-    console.log(props.id, 'check this');
-
-
     const values = Object.values(props.stateArray)
     useEffect(() => {
         const initReq = async () => {

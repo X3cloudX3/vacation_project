@@ -2,19 +2,22 @@ const express = require("express")
 const router = express.Router();
 const pool = require("../db/pool");
 
+const isAdmin = require('../middlewares/isAdmin')
+
 const jwt = require('jsonwebtoken')
 
 
 router.use((req, res, next) => {
     try {
+        console.log('req', req.headers)
         const decoded = jwt.verify(req.headers.authorization, process.env.SECRET);
         req.user = decoded;
-        console.log(decoded);
-
         next();
     } catch (err) {
+        console.log('auth validate ', err.message)
         res.status(401).json({
-            err: 'unauthorized'
+            err: 'unauthorized',
+            message: 'not valid user'
         })
     }
 })
@@ -30,7 +33,7 @@ router.get("/allvacations", async (req, res, next) => {
     }
 })
 
-router.post("/addVacation", async (req, res) => {
+router.post("/addVacation", isAdmin, async (req, res) => {
     try {
         const { capital, description, price, imageURL, startDate, endDate } = req.body
         await pool.execute(insertToDbVacations(), [capital, description, price, imageURL, startDate, endDate])
@@ -66,7 +69,6 @@ router.post("/editVacation", async (req, res) => {
 router.post("/addToFavorites", async (req, res) => {
     try {
         const { id, userId } = req.body
-        console.log(req.body);
         await pool.execute(insertToDbFavVacations(), [userId, id]);
         const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
         res.json(result[0])
@@ -78,7 +80,6 @@ router.post("/addToFavorites", async (req, res) => {
 router.post("/removeFromFavorites", async (req, res) => {
     try {
         const { id, userId } = req.body
-        console.log(req.body);
         await pool.execute(deleteFromFavDbVacations(), [userId, id])
         const result = await pool.execute(getAllSelectedVacations(), [req.user.id]);
         res.json(result[0])
@@ -90,12 +91,20 @@ router.post("/removeFromFavorites", async (req, res) => {
 router.post("/likedVacationNumber", async (req, res) => {
     try {
         const { id } = req.body
-        console.log('liked', id);
         const result = await pool.execute(getNumberOfSelectedOnSpecificVacation(), [id])
-        console.log(result[0]);
-
         res.json(result[0])
     } catch (err) {
+        res.status(500).json({ err: 'error' })
+    }
+})
+
+router.get("/likedVacationReport", async (req, res, next) => {
+    try {
+
+        const result = await pool.execute(getAllCountedSelectedVaction());
+        res.json(result[0])
+    } catch (err) {
+        console.log('liked', err.message);
         res.status(500).json({ err: 'error' })
     }
 })
@@ -133,7 +142,7 @@ on vacations.id =  fav_vacations.Vacation_id and fav_vacations.user_id = ?`
 
 function getAllCountedSelectedVaction() {
     return `SELECT 
-    count(*),vacations.id
+    count(*) as liked,vacations.name
   FROM
       vacations_data.vacations
           INNER JOIN

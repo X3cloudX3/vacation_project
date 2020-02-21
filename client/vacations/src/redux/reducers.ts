@@ -3,17 +3,15 @@ import Actions from "./action.config";
 
 const initialState = {
     vacations: [],
+    user: null,
 };
 
 export default function root(state = initialState, action: any) {
     switch (action.type) {
-        case Actions.SAVE_USER: {
-            return {
-                ...state,
-                users: action.payload,
-
-            };
-        }
+      
+        case Actions.SET_USER: { 
+            return { ...state, user: action.payload }
+         }
 
         case Actions.SET_VACATIONS: {
             return { ...state, vacations: action.payload }

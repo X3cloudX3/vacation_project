@@ -13,15 +13,11 @@ export const withAuth = (WrappedComponentVacation: any, WrappedComponentAdmin: a
                 setStatus(status)
                 setId(userId)
                 setAdmin(admin);
-
-
             }
             verify();
         }, [])
         if (status === "loading") return <div className="loader"></div>
         if (!status) return <Redirect to="/login" />
-        console.log(userId);
-
         if (!admin) return <WrappedComponentVacation {...props} id={userId} />
         return <WrappedComponentAdmin {...props} />
     }

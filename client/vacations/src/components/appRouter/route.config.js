@@ -7,7 +7,8 @@ import { withAuth } from "../hoc/auth"
 
 export const routes = [
     { exact: true, isVisible: false, title: "register", path: "/register", component: register },
-    { exact: true, isVisible: true, title: "login", path: "/login", component: login },
+    { exact: true, isVisible: false, title: "login", path: "/login", component: login },
+
     {
         exact: true, isVisible: true, title: "Vacations", path: "/vacations", component: (props) => {
             const VacationsWithAuth = withAuth(vacations, adminVacations);
